@@ -1,0 +1,24 @@
+Objective:
+    Create a DAO
+
+    Steps:
+        - Write the smart contracts ✅
+        - Write deployment scripts
+        - Wite scripts to interact with them
+
+Setup:
+
+    - `yarn add --dev hardhat`    // creates node_modules, package.json and yarn.lock files
+    - `yarn hardhat`    empty hardhat.config.js    // creates hardhat.config.js
+    - `yarn add --dev @openzeppelin/contracts`
+    - `yarn add --dev prettier prettier-plugin-solidity`
+
+Create:
+
+    - "contracts" folder
+        - "Box.sol" file
+        - "GovernanceToken.sol" file
+        - "governance_standard" folder
+            - "GovernorContract.sol" file
+            - "TimeLock.sol" file
+    - ".gitignore" file
