@@ -24,7 +24,7 @@ const deployGoverorContract = async function (hre) {
       VOTING_PERIOD,
       QUOROM_PERCENTAGE,
     ], // "GovernorContract.sol" constructor arguments
-    // log: true,
+    log: true,
     // waitConfirmations:   // This wait period is used to support auto-verification
   }); // deploy(nameOfTheContract, {parameters})
 

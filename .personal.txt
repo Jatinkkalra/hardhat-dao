@@ -3,8 +3,13 @@ Objective:
 
     Steps:
         - Write the smart contracts ✅
-        - Write deployment scripts
-        - Wite scripts to interact with them
+        - Write deployment scripts ✅
+        - Wite scripts to interact with them ✅
+
+        Contracts vs Deploy Scripts vs Scripts:
+        - Contracts contain the logic and data structures of the DApp and are written in Solidity.
+        - Deployment scripts define the deployment process and are used to deploy contracts to the Ethereum network.
+        - Scripts are standalone files used for interacting with deployed contracts and performing various tasks.
 
 Setup:
 
@@ -14,7 +19,8 @@ Setup:
     - `yarn add --dev prettier prettier-plugin-solidity`
     - `yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers`
     - `yarn add --dev hardhat-deploy`       // hardhat-deploy allows you to write deploy scripts in the deploy folder.
-
+    - `yarn add fs`
+    
 Create:
 
     - "contracts" folder
@@ -28,11 +34,30 @@ Create:
         - "01-deploy-governor-token.js" file
         - "02-deploy-time-lock.js" file
         - "03-deploy-governor-contract.js" file
+        - "04-setup-governance-contract.js" file
+        - "05-deploy-box.js" file
     - "helper-hardhat-config.js" file   // for TimeLock.sol & GovernorContract.sol constructor arguments which is going to be used a lot.
+    - "scripts" folder
+        - "propose.js" file
+        - "vote.js" file
+        - "queue-and-execute.js" file
+    - "utils" folder
+        - "move-blocks.js" file // To move blocks on local blockchain
+    - "proposals.json" file     // To keep track of all proposals
+
 
 Notes:
     - Error prompt: TypeError: Cannot read properties of undefined (reading 'JsonRpcProvider')
         Solution: `yarn add ethers@5.7.2`
+    - Contracts vs Deploy Scripts vs Scripts:
+        Contracts contain the logic and data structures of the DApp and are written in Solidity.
+        Deployment scripts define the deployment process and are used to deploy contracts to the Ethereum network.
+        Scripts are standalone files used for interacting with deployed contracts and performing various tasks.
+    - After writing the deploy scripts; when we run `yanr hardhat node`, the node also deploys all of the contracts in the fake blockchain.
+        This helps to run scripts to interact with the blockchain and test them out. 
+
+Commands to run:
+    - `yarn hardhat run .\scripts\propose.js --network localhost`   // check scripts on local blockchain
 
 To-Do:
     - Script for auto-verification of "deploy" folder files

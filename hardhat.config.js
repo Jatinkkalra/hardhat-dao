@@ -9,9 +9,11 @@ module.exports = {
   networks: {
     hardhat: {
       chainId: 31337, // Used when we run tests
+      allowUnlimitedContractSize: true,
     },
     localhost: {
       chainId: 31337, // Used when you run `yarn hardhat node` or `yarn hardhat deploy`. A fake blockchain in the terminal.
+      allowUnlimitedContractSize: true,
     },
   },
   namedAccounts: {
