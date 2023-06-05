@@ -10,7 +10,7 @@ const {
   VOTING_DELAY,
   proposalsFile,
 } = require("../helper-hardhat-config");
-const { moveBlocks } = require("../utils/move-blocks");
+const moveBlocks = require("../utils/move-blocks");
 const fs = require("fs");
 
 async function propose(args, functionToCall, proposalDescription) {
@@ -33,9 +33,10 @@ async function propose(args, functionToCall, proposalDescription) {
   );
   const proposeReceipt = await proposeTx.wait(1);
   const proposalId = proposeReceipt.events[0].args.proposalId; // fetching prposalId at event creation. https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/Governor.sol
-  let proposals = JSON.parse(fs.readFileSync)(proposalsFile, "utf8");
-  proposals[network.config.chainId.toString()].push(proposalId.toString());
+  let proposals = JSON.parse(fs.readFileSync(proposalsFile, "utf8"));
+  proposals[network.config.chainId.toString()] = [proposalId.toString()];
   fs.writeFileSync(proposalsFile, JSON.stringify(proposals));
+
   // Fast forwarding blocks for local blockchains only
   if (developmentChains.includes(network.name)) {
     await moveBlocks(VOTING_DELAY + 1);

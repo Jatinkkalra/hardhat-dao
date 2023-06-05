@@ -43,6 +43,7 @@ Create:
         - "queue-and-execute.js" file
     - "utils" folder
         - "move-blocks.js" file // To move blocks on local blockchain
+        - "move-time.js" file
     - "proposals.json" file     // To keep track of all proposals
 
 
@@ -55,6 +56,12 @@ Notes:
         Scripts are standalone files used for interacting with deployed contracts and performing various tasks.
     - After writing the deploy scripts; when we run `yanr hardhat node`, the node also deploys all of the contracts in the fake blockchain.
         This helps to run scripts to interact with the blockchain and test them out. 
+    - After voting period ends, we can check the state of the proposal in console by running:
+        - `yarn hardhat console --network localhost`
+        - Paste the governor variable line: `const governor = await ethers.getContract("GovernorContract")` and press enter 
+        - `await governor.state("20410873684195684007502903743313035195888380351590997192411449750453432545334")    // proposalId taken from "../proposals.json"
+        - Outcome (0,1,2,3,4,5,6 or 7) can be matched with "ProposalState" in this interface: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/governance/IGovernor.sol
+
 
 Commands to run:
     - `yarn hardhat run .\scripts\propose.js --network localhost`   // check scripts on local blockchain
